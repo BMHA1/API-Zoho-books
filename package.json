@@ -1,7 +1,7 @@
 {
   "name": "api-zohobooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Conexión con la api zohobooks",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +14,13 @@
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
     "sequelize": "^7.0.0-alpha.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BMHA1/API-Zoho-books.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BMHA1/API-Zoho-books/issues"
+  },
+  "homepage": "https://github.com/BMHA1/API-Zoho-books#readme"
 }
