@@ -11,11 +11,36 @@ module.exports = {
       contact: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      contact_id: {
+        type: Sequelize.STRING
+      },
+      company_name: {
+        type: Sequelize.STRING
+      },
+      first_name: {
+        type: Sequelize.STRING
+      },
+      last_name: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      designation: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      department: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      website: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      language_code: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      language_code_formatted: {
         allowNull: false,
         type: Sequelize.DATE
       }

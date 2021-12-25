@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Customer.init({
-    contact: DataTypes.STRING,
+    contact:DataTypes.STRING,
     contact_id:DataTypes.STRING,
     company_name:DataTypes.STRING,
     first_name:DataTypes.STRING,
@@ -24,8 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     website:DataTypes.STRING,
     language_code:DataTypes.STRING,
     language_code_formatted: DataTypes.STRING,
-
-
   }, {
     sequelize,
     modelName: 'Customer',

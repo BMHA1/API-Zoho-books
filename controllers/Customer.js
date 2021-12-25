@@ -1,12 +1,16 @@
 const { customer } = require('../models/index.js')
-
-
+const APIconsumer = require('../Apiconsumer/ApiCustomers')
+const orderData = require('../Helpers/orderdate')
 
 module.exports.CreateCustomer = async (req, res) => {
-    try {
+    let result = await APIconsumer.listCustomers()
+    let data = orderData.orderDate(result) //result debe tener un array de objectos
 
-        let Customerss = await Customer.findAll({})
-        res.status(200).json({ Data: Customer })
+    
+    res.status(200).json({ data: result })
+    try {
+        // let Customers = await customer.bulkcreate(result)
+        // res.status(200).json({ Data:Customers})
     } catch (error) {
         res.json({
             message: 'No eres admin.',
@@ -14,5 +18,28 @@ module.exports.CreateCustomer = async (req, res) => {
         })
     }
 }
-
-module.exports.SearchCustomers
+module.exports.SearchCustomers = async (req, res) => {
+    let result = await APIconsumer.listCustomers()
+    try {
+        let Customers = await customer.bulkcreate(result)
+        res.status(200).json({ Data: Customers })
+    } catch (error) {
+        res.json({
+            message: 'No eres admin.',
+            errors: error,
+        })
+    }
+}
+module.exports.SearchNameCustomer = async (req, res) => {
+    let result = await APIconsumer.listCustomers()
+    try {
+        let Customers = await customer.bulkcreate(result)
+        res.status(200).json({ Data: Customers })
+    } catch (error) {
+        res.json({
+            message: 'No eres admin.',
+            errors: error,
+        })
+    }
+}
+// module.exports.SearchCustomers
