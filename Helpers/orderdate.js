@@ -1,21 +1,13 @@
 
 
 
-module.exports.orderDate=()=>{
-
-    let customers = {
-        contact: result.contact,
-        contact_id: result.contact_id,
-        company_name: result.company_name,
-        first_name: result.first_name,
-        last_name: result.last_name,
-        designation: result.designation,
-        department: result.department,
-        website: result.website,
-        language_code: result.language_code,
-        language_code_formatted: result.language_code,
+module.exports.filterData = (customers) => {
+    let copyCustomers = [...customers]
+ 
+    for (let i = 0; i < copyCustomers.length;  i++) {
+        console.log(typeof copyCustomers[i].ach_supported) 
+        copyCustomers[i].custom_fields = "[string]"
+        copyCustomers[i].custom_field_hash = "{string}"
     }
-    console.log(data)
-
-
+    return copyCustomers
 }
