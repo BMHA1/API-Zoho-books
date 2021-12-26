@@ -6,21 +6,21 @@ global.fetch = require("node-fetch")
 const url = "https://books.zoho.eu/api/v3/contacts?organization_id=20080221283"
 
 
-setInterval(() => {
-    module.exports.refrestoken = async () => {
-        console.log(process.env.REFRESH_TOKEN)
-        try {
-            let result = await fetch(process.env.REFRESH_TOKEN, {
-                method: "POST"
-            })
-            const token = await result.json();
-            console.log(token);
-            return token
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}, 3560)
+// setInterval(() => {
+//     module.exports.refrestoken = async () => {
+//         console.log(process.env.REFRESH_TOKEN)
+//         try {
+//             let result = await fetch(process.env.REFRESH_TOKEN, {
+//                 method: "POST"
+//             })
+//             const token = await result.json();
+//             console.log(token);
+//             return token
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// }, 3560)
 
 
 
@@ -31,7 +31,7 @@ module.exports.createUser = async (user) => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 1000.368515c7533887df46fcae4de11ff6e6.769eea9457aef02e4b59d623d7196114'
+                'Authorization': `Bearer {refrestoken}`
             },
             body: JSON.stringify({
                 "contact_name": user.contact_name,
@@ -79,8 +79,6 @@ module.exports.shearchCustomerName = async (name) => {
         console.log(error)
     }
 }
-
-
 module.exports.updateContact = async (id_dateReplace, user) => {
     console.log(user)
     try {
@@ -98,8 +96,21 @@ module.exports.updateContact = async (id_dateReplace, user) => {
         console.log(error)
     }
 }
-
-
+module.exports.deleteContact = async () => {
+    try {
+        let result = await fetch(`https://books.zoho.eu/api/v3/contacts/${id_dateReplace}?organization_id=20080221283`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 1000.904e8e1e5fab559b013dd2d8a839d014.a5ce0c719290c0b7a1cb0e4537c8554e'
+            },
+        })
+        const data = await result.json();
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports.refrestoken = async () => {
     console.log(process.env.REFRESH_TOKEN)
     try {

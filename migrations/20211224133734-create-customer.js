@@ -8,7 +8,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       contact_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       contact_name: {
         type: Sequelize.STRING

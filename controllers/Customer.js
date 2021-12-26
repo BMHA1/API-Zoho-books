@@ -2,7 +2,6 @@ const { Customer } = require('../models/index.js')
 const APIconsumer = require('../Apiconsumer/ApiCustomers')
 const filterData = require('../Helpers/orderdate')
 
-
 module.exports.CreateCustomer = async (req, res) => {
     try {
         let result = await APIconsumer.createUser(req.body)
@@ -46,6 +45,17 @@ module.exports.UpdateContact = async (req, res) => {
     try {
         let userModify = await APIconsumer.updateContact(req.params.id, req.body)
         res.status(200).json({ Data: userModify })
+    } catch (error) {
+        res.json({
+            message: 'No se ha podido realizar las modificaciones.',
+            errors: error,
+        })
+    }
+}
+module.exports.DeleteContact = async (req, res) => {
+    try {
+        let UserDelete = await APIconsumer.deleteContact()
+        res.status(200).json({ Data: UserDelete })
     } catch (error) {
         res.json({
             message: 'No se ha podido realizar las modificaciones.',

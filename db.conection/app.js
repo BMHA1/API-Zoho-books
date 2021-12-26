@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 app.use(express.json())
 const custormersRouter=require('../route/customer')
+const companiesRouter=require('../route/company')
 const dotenv = require('dotenv').config()
 
 app.use(function (req, res, next) {
@@ -10,6 +11,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+app.use('/companies',companiesRouter)
 app.use('/customers',custormersRouter)
 
 
