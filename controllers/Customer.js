@@ -17,6 +17,7 @@ module.exports.CreateCustomer = async (req, res) => {
         console.log(error)
     }
 }
+
 module.exports.SearchCustomers = async (req, res) => {
     try {
         let payloadToken=decode.decodeToken(req.headers.token)

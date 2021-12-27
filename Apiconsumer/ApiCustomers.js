@@ -18,8 +18,10 @@ module.exports.refreshToken = async (refresh_token, client_id, client_secret) =>
     }
 }
 
+
+//metodo para crear usuarios en zohobooks, (payload)
 module.exports.createUser = async (user, idUser) => {
-    console.log(user.contact_type)
+    console.log(process.env.URl_ENDPOINT + idUser.ID_usuario)
     try {
         let result = await fetch(process.env.URl_ENDPOINT + idUser.ID_usuario, {
             method: "POST",
@@ -39,6 +41,7 @@ module.exports.createUser = async (user, idUser) => {
     }
 }
 
+//metodo para buscar todos los usuario, (payload)
 module.exports.listCustomers = async (idUser) => {
     try {
         let result = await fetch(process.env.URl_ENDPOINT + idUser.ID_usuario, {
@@ -49,7 +52,6 @@ module.exports.listCustomers = async (idUser) => {
             }
         })
         const data = await result.json();
-        // console.log(data.contacts);
         return data
     } catch (error) {
         console.log(error)
