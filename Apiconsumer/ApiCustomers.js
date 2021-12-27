@@ -43,6 +43,7 @@ module.exports.createUser = async (user, idUser) => {
 
 //metodo para buscar todos los usuario, (payload)
 module.exports.listCustomers = async (idUser) => {
+    console.log(process.env.URl_ENDPOINT + idUser.ID_usuario)
     try {
         let result = await fetch(process.env.URl_ENDPOINT + idUser.ID_usuario, {
             method: "GET",

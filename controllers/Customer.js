@@ -21,7 +21,7 @@ module.exports.CreateCustomer = async (req, res) => {
 module.exports.SearchCustomers = async (req, res) => {
     try {
         let payloadToken=decode.decodeToken(req.headers.token)
-        let result = await APIconsumer.listCustomers()
+        let result = await APIconsumer.listCustomers(payloadToken)
         let data = filterData.filterData(result.contacts) //result debe tener un array de objectos
         console.log(data)
         let Customers = await Customer.bulkCreate(data)
