@@ -7,7 +7,7 @@ module.exports.registerCompany = async (req, res) => {
         let company = req.body
         company.ID_usuario = hashing.createHash(company.ID_usuario) //hasheamos ID_usuario
         company = await Company.create(company)
-        res.status(200).json({ Data: company})
+        res.status(200).json({ Data: company })
     } catch (error) {
         res.json({
             message: 'No se ha logrado registrar la compañia',
@@ -18,8 +18,9 @@ module.exports.registerCompany = async (req, res) => {
 }
 
 module.exports.loginCompany = async (req, res) => {
+
     try {
-        const verifyCompany = await Company.findOne({ where: { email: req.body.email}});
+        const verifyCompany = await Company.findOne({ where: { email: req.body.email } });
         if (verifyCompany === null) {
             return "La companañia no existe"
         } else {
@@ -33,5 +34,5 @@ module.exports.loginCompany = async (req, res) => {
             status: 400
         })
     }
-} 
+}
 

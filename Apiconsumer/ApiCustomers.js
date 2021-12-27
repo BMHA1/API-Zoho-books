@@ -3,11 +3,10 @@ const { use } = require('../route/customer')
 const dotenv = require('dotenv').config()
 global.fetch = require("node-fetch")
 
-// const url = "https://books.zoho.eu/api/v3/contacts?organization_id=20080221283"
+// "
 
 
 module.exports.refreshToken = async (refresh_token, client_id, client_secret) => {
-    console.log(process.env.REFRESH_TOKEN)
     try {
         let result = await fetch(process.env.REFRESH_TOKEN + `${refresh_token}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=http://www.zoho.com/books&grant_type=refresh_token`, {
             method: "POST"
@@ -21,10 +20,10 @@ module.exports.refreshToken = async (refresh_token, client_id, client_secret) =>
 }
 
 
-module.exports.createUser = async (user) => {
+module.exports.createUser = async (user, idUser) => {
     console.log(user.contact_type)
     try {
-        let result = await fetch(url, {
+        let result = await fetch(process.env.URl_ENDPOINT + idUser, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ const { Customer } = require('../models/index.js')
 const APIconsumer = require('../Apiconsumer/ApiCustomers')
 const filterData = require('../Helpers/orderdate')
 
+
 module.exports.CreateCustomer = async (req, res) => {
     try {
         let result = await APIconsumer.createUser(req.body)
