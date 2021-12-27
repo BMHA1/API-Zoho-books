@@ -4,7 +4,6 @@ const decode = require('../Helpers/decodeToken')
 
 module.exports.renewToken = async (req, res, next) => {
     let objectUser = decode.decodeToken(req.headers.token)
-    console.log(objectUser.iat)
     let fecha = Date.now() - objectUser.iat
     try {
         if (fecha < 3599999) {

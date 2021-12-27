@@ -9,8 +9,8 @@ module.exports.generateToken = async (userToken) => {
         const payload = {
             ID_usuario: userToken.ID_usuario,
             email: userToken.email,
-            refreshToken: userToken.refresh_token,
-            token: refuserToken.access_token,
+            refreshToken: userToken.refresh_token, //No vence, se utiliza para refrescar el token cada 3600 seg
+            token: refuserToken.access_token, // Token que utilizaremos para llamar a todos los endpoints en zoho books
             iat: Date.now()
         }
         return jwtr.sign(payload, process.env.TOKEN)

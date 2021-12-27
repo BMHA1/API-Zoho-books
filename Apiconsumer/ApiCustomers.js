@@ -21,11 +21,11 @@ module.exports.refreshToken = async (refresh_token, client_id, client_secret) =>
 module.exports.createUser = async (user, idUser) => {
     console.log(user.contact_type)
     try {
-        let result = await fetch(process.env.URl_ENDPOINT + idUser, {
+        let result = await fetch(process.env.URl_ENDPOINT + idUser.ID_usuario, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer {refrestoken}`
+                'Authorization': `Bearer ${idUser.token}`
             },
             body: JSON.stringify({
                 "contact_name": user.contact_name,
@@ -38,14 +38,14 @@ module.exports.createUser = async (user, idUser) => {
         console.log(error)
     }
 }
-module.exports.listCustomers = async () => {
 
+module.exports.listCustomers = async (idUser) => {
     try {
-        let result = await fetch(url, {
+        let result = await fetch(process.env.URl_ENDPOINT + idUser.ID_usuario, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 1000.940084b8ef16ded76a29604eb41c3228.7b15dfd9eb5d46a5f55cd003398d43b7'
+                'Authorization': `Bearer ${idUser.token}`
             }
         })
         const data = await result.json();
@@ -55,13 +55,14 @@ module.exports.listCustomers = async () => {
         console.log(error)
     }
 }
-module.exports.shearchCustomerName = async (name) => {
+//metodo para buscar por el nombre del usuario, (nombre del usuario que quiero buscar, payload)
+module.exports.shearchCustomerName = async (name, idUser) => {
     try {
-        let result = await fetch(url + `&contact_name_startswith=${name}`, {
+        let result = await fetch(process.env.URl_ENDPOINT + `${idUser.ID_usuario}&contact_name_startswith=${name}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 1000.940084b8ef16ded76a29604eb41c3228.7b15dfd9eb5d46a5f55cd003398d43b7'
+                'Authorization': `Bearer ${idUser.token}`
             }
         })
         const data = await result.json();
@@ -71,14 +72,15 @@ module.exports.shearchCustomerName = async (name) => {
         console.log(error)
     }
 }
-module.exports.updateContact = async (id_dateReplace, user) => {
+//metodo para modificar cualquier propiedad del usuario, (id_zoobook, modificación, payload)
+module.exports.updateContact = async (id_dateReplace, user, idUser) => {
     console.log(user)
     try {
-        let result = await fetch(`https://books.zoho.eu/api/v3/contacts/${id_dateReplace}?organization_id=20080221283`, {
+        let result = await fetch(process.env.URL_MODIFY_DELETE + id_dateReplace + process.env.URL_MODIFY_DELETE_ID + idUser.ID_usuario, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 1000.904e8e1e5fab559b013dd2d8a839d014.a5ce0c719290c0b7a1cb0e4537c8554e'
+                'Authorization': `Bearer ${idUser.token}`
             },
             body: JSON.stringify(user)
         })
@@ -88,13 +90,15 @@ module.exports.updateContact = async (id_dateReplace, user) => {
         console.log(error)
     }
 }
-module.exports.deleteContact = async () => {
+
+//metodo para eliminar cualquier propiedad del usuario, (id_zoobook, payload)
+module.exports.deleteContact = async (id_dateReplace, idUser) => {
     try {
-        let result = await fetch(`https://books.zoho.eu/api/v3/contacts/${id_dateReplace}?organization_id=20080221283`, {
+        let result = await fetch(process.env.URL_MODIFY_DELETE + id_dateReplace + process.env.URL_MODIFY_DELETE_ID + idUser.ID_usuario, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 1000.904e8e1e5fab559b013dd2d8a839d014.a5ce0c719290c0b7a1cb0e4537c8554e'
+                'Authorization': `Bearer ${idUser.token}`
             },
         })
         const data = await result.json();
