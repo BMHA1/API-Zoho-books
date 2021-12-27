@@ -14,6 +14,7 @@ module.exports.CreateCustomer = async (req, res) => {
         console.log(error)
     }
 }
+
 module.exports.SearchCustomers = async (req, res) => {
     try {
         let result = await APIconsumer.listCustomers()

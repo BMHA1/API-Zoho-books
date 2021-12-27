@@ -1,6 +1,6 @@
 
 const { Company } = require('../models/index')
-const hashing = require('../Helpers/HashId')
+const hashing = require('../Middleware/HashId')
 
 module.exports.registerCompany = async (req, res) => {
     try {
@@ -19,14 +19,13 @@ module.exports.registerCompany = async (req, res) => {
 
 module.exports.loginCompany = async (req, res) => {
     try {
-        const verifyCompany = await Company.findOne({ where: { ID_usuario: req.body.ID_usuario } });
+        const verifyCompany = await Company.findOne({ where: { email: req.body.email}});
         if (verifyCompany === null) {
             return "La companañia no existe"
         } else {
-            let token = await hashing.compareHash(req.body.ID_usuario, verifyCompany.ID_usuario)
+            let token = await hashing.compareHash(req.body, verifyCompany)
+            res.status(200).json({ token })
         }
-        console.log(token + "2")
-        res.status(200).json({ token })
     } catch (error) {
         res.json({
             message: 'La contraseña es incorrecta',
@@ -35,3 +34,4 @@ module.exports.loginCompany = async (req, res) => {
         })
     }
 } 
+

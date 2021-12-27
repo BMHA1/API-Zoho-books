@@ -3,7 +3,10 @@ const app = express();
 app.use(express.json())
 const custormersRouter=require('../route/customer')
 const companiesRouter=require('../route/company')
-const dotenv = require('dotenv').config()
+const middleware=require('../Middleware/HashId');
+const dotenv = require('dotenv').config() 
+const verifyTimeToken =require('../Middleware/RenewToken')
+
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -13,7 +16,7 @@ app.use(function (req, res, next) {
 
 
 app.use('/companies',companiesRouter)
-app.use('/customers',custormersRouter)
+app.use('/customers', verifyTimeToken.renewToken, middleware.verificarToken ,custormersRouter)
 
 
 console.log(process.env.PORT)

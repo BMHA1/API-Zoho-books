@@ -18,7 +18,7 @@ module.exports = {
           }
         }
       },
-      code: {
+      refresh_token: {
         type: Sequelize.STRING
       },
       client_id: {
