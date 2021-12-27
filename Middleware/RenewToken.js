@@ -1,6 +1,6 @@
 
 const GenerateToken = require('../Middleware/GenerateToken')
-const decode = require('../Middleware/decodeToken')
+const decode = require('../Helpers/decodeToken')
 
 module.exports.renewToken = async (req, res, next) => {
     let objectUser = decode.decodeToken(req.headers.token)

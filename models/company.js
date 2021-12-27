@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Company.init({
-    email:DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
     refresh_token: DataTypes.STRING,
     client_id: DataTypes.STRING,
     client_secret: DataTypes.STRING,

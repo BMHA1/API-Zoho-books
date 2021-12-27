@@ -18,6 +18,10 @@ module.exports = {
           }
         }
       },
+      password: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       refresh_token: {
         type: Sequelize.STRING
       },

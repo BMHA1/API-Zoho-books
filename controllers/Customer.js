@@ -1,11 +1,12 @@
 const { Customer } = require('../models/index.js')
 const APIconsumer = require('../Apiconsumer/ApiCustomers')
 const filterData = require('../Helpers/orderdate')
-
+const decode = require('../Helpers/decodeToken')
 
 module.exports.CreateCustomer = async (req, res) => {
     try {
-        let result = await APIconsumer.createUser(req.body)
+        let payloadToken=decode.decodeToken(req.headers.token)
+        let result = await APIconsumer.createUser(req.body, payloadToken)
         res.status(200).json({ Data: result })
     } catch (error) {
         res.json({

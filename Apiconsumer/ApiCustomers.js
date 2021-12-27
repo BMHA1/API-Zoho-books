@@ -3,7 +3,6 @@ const { use } = require('../route/customer')
 const dotenv = require('dotenv').config()
 global.fetch = require("node-fetch")
 
-// "
 
 
 module.exports.refreshToken = async (refresh_token, client_id, client_secret) => {
@@ -18,7 +17,6 @@ module.exports.refreshToken = async (refresh_token, client_id, client_secret) =>
         console.log(error)
     }
 }
-
 
 module.exports.createUser = async (user, idUser) => {
     console.log(user.contact_type)
@@ -41,6 +39,7 @@ module.exports.createUser = async (user, idUser) => {
     }
 }
 module.exports.listCustomers = async () => {
+
     try {
         let result = await fetch(url, {
             method: "GET",
@@ -52,7 +51,6 @@ module.exports.listCustomers = async () => {
         const data = await result.json();
         // console.log(data.contacts);
         return data
-
     } catch (error) {
         console.log(error)
     }
@@ -66,9 +64,7 @@ module.exports.shearchCustomerName = async (name) => {
                 'Authorization': 'Bearer 1000.940084b8ef16ded76a29604eb41c3228.7b15dfd9eb5d46a5f55cd003398d43b7'
             }
         })
-
         const data = await result.json();
-        // console.log(data.contacts);
         return data
 
     } catch (error) {

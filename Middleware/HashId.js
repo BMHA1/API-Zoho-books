@@ -9,7 +9,7 @@ module.exports.createHash = (password) => {
 
 module.exports.compareHash = async (reqbody, companyBBDD) => {
     try {
-        let compare = bcrypt.compareSync(reqbody.ID_usuario, companyBBDD.ID_usuario)
+        let compare = bcrypt.compareSync(reqbody.password, companyBBDD.password)
         if (compare) {
             let refreshToken = await generateToken.generateToken(companyBBDD)// generamos el tokenRefresh, con el primero
             return refreshToken

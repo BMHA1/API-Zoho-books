@@ -5,7 +5,7 @@ const hashing = require('../Middleware/HashId')
 module.exports.registerCompany = async (req, res) => {
     try {
         let company = req.body
-        company.ID_usuario = hashing.createHash(company.ID_usuario) //hasheamos ID_usuario
+        company.password = hashing.createHash(company.password) //hasheamos ID_usuario
         company = await Company.create(company)
         res.status(200).json({ Data: company })
     } catch (error) {
