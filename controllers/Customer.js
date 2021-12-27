@@ -6,7 +6,6 @@ const decode = require('../Helpers/decodeToken')
 module.exports.CreateCustomer = async (req, res) => {
     try {
         let payloadToken=decode.decodeToken(req.headers.token)
-        console.log(payloadToken)
         let result = await APIconsumer.createUser(req.body, payloadToken)
         res.status(200).json({ Data: result })
     } catch (error) {
@@ -17,7 +16,6 @@ module.exports.CreateCustomer = async (req, res) => {
         console.log(error)
     }
 }
-
 module.exports.SearchCustomers = async (req, res) => {
     try {
         let payloadToken=decode.decodeToken(req.headers.token)

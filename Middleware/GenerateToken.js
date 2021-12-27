@@ -4,6 +4,7 @@ const APIconsumer = require('../Apiconsumer/ApiCustomers')
 
 
 module.exports.generateToken = async (userToken) => {
+    console.log(userToken)
     try {
         let refuserToken = await APIconsumer.refreshToken(userToken.refresh_token, userToken.client_id, userToken.client_secret)// generamos el tokenRefresh, con el primero
         const payload = {

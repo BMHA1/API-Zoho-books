@@ -7,7 +7,8 @@ global.fetch = require("node-fetch")
 
 module.exports.refreshToken = async (refresh_token, client_id, client_secret) => {
     try {
-        let result = await fetch(process.env.REFRESH_TOKEN + `${refresh_token}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=http://www.zoho.com/books&grant_type=refresh_token`, {
+        console.log('ajusto token')
+        let result = await fetch(process.env.REFRESH_TOKEN +`${refresh_token}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=http://www.zoho.com/books&grant_type=refresh_token`, {
             method: "POST"
         })
         const token = await result.json();
@@ -17,7 +18,6 @@ module.exports.refreshToken = async (refresh_token, client_id, client_secret) =>
         console.log(error)
     }
 }
-
 
 //metodo para crear usuarios en zohobooks, (payload)
 module.exports.createUser = async (user, idUser) => {

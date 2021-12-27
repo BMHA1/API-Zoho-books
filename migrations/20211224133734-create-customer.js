@@ -9,7 +9,6 @@ module.exports = {
       },
       contact_id: {
         type: Sequelize.STRING,
-        unique: true
       },
       contact_name: {
         type: Sequelize.STRING
